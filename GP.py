@@ -32,12 +32,13 @@ def target(individual):
     Env = simulate()
     func = toolbox.compile(expr=individual)
     Env.gpfunc = func
+    Env.end = 500
     return Env.run(),
 
 
 
 
-popnum = 10
+popnum = 500
 pset = gp.PrimitiveSetTyped("MAIN",in_types=[float]*6,ret_type=float)
 pset.addPrimitive(operator.add, [float,float], float)
 pset.addPrimitive(operator.sub, [float,float], float)
@@ -96,7 +97,7 @@ def main():
     pool = multiprocessing.Pool(processes=10)
     toolbox.register("map", pool.map)
 
-    _, log = algorithms.eaSimple(pop, toolbox, 0.85, 0.1, 5, stats, halloffame=hof)
+    _, log = algorithms.eaSimple(pop, toolbox, 0.85, 0.1, 52, stats, halloffame=hof)
 
     pool.close()
     pool.join()
