@@ -41,7 +41,7 @@ class simulate:
     def __init__(self) -> None:
         self.VDF_a = 1
         self.VDF_b = 1
-        self.PopNum = 101        ##样例个数，控制每个样例对应的随机种子数
+        self.PopNum = 9         ##样例个数，控制每个样例对应的随机种子数
         self.M_CONST = 500       ##虚拟节点的容量，足够大即可
         self.RESOURCE_FIELD = RESOURCE_FIELD
         self.Speed = 900/60            ##以km/min为单位，因为延迟时间精确到分
@@ -57,7 +57,7 @@ class simulate:
         self.MyNet2 : nx.Graph = None
         self.RuleChoice = "GP"         ##选择哪一个rule，GP，Dijkstra, CASPER..
         self.discount = 0
-        self.end = 500                 ##默认为500min仿真
+        self.end = 1000                 ##默认为500min仿真
 
     def VDF(self, x:float)->float:
         return 1.6*x
@@ -189,7 +189,7 @@ class simulate:
 
     def run(self, discount = -1):
         DoneAir = 0
-        while self.PopNum >= 90:
+        while self.PopNum >= 1:
             self.discount = self.PopNum if discount == -1 else discount
             self.MySim = FlowSimulator(flow_net=self.MyNet)
             self.addagents(self.MySim)
@@ -197,7 +197,7 @@ class simulate:
             DoneAir += self.MySim.reset_agents_num   
             self.PopNum -= 1
 
-        self.PopNum = 101
+        self.PopNum = 9
         return int(DoneAir)
 
 def protectedDiv(left, right):

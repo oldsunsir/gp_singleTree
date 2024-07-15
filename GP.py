@@ -32,13 +32,13 @@ def target(individual):
     Env = simulate()
     func = toolbox.compile(expr=individual)
     Env.gpfunc = func
-    Env.end = 500
+    Env.end = 1000
     return Env.run(),
 
 
 
 
-popnum = 500
+popnum = 150
 pset = gp.PrimitiveSetTyped("MAIN",in_types=[float]*6,ret_type=float)
 pset.addPrimitive(operator.add, [float,float], float)
 pset.addPrimitive(operator.sub, [float,float], float)
@@ -94,10 +94,10 @@ def main():
     stats.register("std", numpy.std)
     stats.register("min", numpy.min)
     stats.register("max", numpy.max)
-    pool = multiprocessing.Pool(processes=10)
+    pool = multiprocessing.Pool()
     toolbox.register("map", pool.map)
 
-    _, log = algorithms.eaSimple(pop, toolbox, 0.85, 0.1, 52, stats, halloffame=hof)
+    _, log = algorithms.eaSimple(pop, toolbox, 0.85, 0.1, 50, stats, halloffame=hof)
 
     pool.close()
     pool.join()
@@ -121,15 +121,15 @@ if __name__ == "__main__":
     print(hof[0])
     nodes, edges, labels = gp.graph(hof[0])
 
-    import networkx as nx 
-    import pygraphviz as pgv
-    pgv.AGraph(prog='C:/Program Files/Graphviz/bin/dot.exe')  # 将路径替换为您的dot.exe的实际路径
-    g  = nx.Graph()
-    g.add_nodes_from(nodes)
-    g.add_edges_from(edges)
-    pos = nx.nx_agraph.graphviz_layout(g, prog = "dot")
-    nx.draw_networkx_nodes(g, pos)
-    nx.draw_networkx_edges(g, pos)
-    nx.draw_networkx_labels(g, pos, labels)
-    plt.show()
+    # import networkx as nx 
+    # import pygraphviz as pgv
+    # pgv.AGraph(prog='C:/Program Files/Graphviz/bin/dot.exe')  # 将路径替换为您的dot.exe的实际路径
+    # g  = nx.Graph()
+    # g.add_nodes_from(nodes)
+    # g.add_edges_from(edges)
+    # pos = nx.nx_agraph.graphviz_layout(g, prog = "dot")
+    # nx.draw_networkx_nodes(g, pos)
+    # nx.draw_networkx_edges(g, pos)
+    # nx.draw_networkx_labels(g, pos, labels)
+    # plt.show()
     
