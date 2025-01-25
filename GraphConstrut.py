@@ -4,7 +4,7 @@ from haversine import haversine, Unit
 import igraph
 import folium
 
-path = '../数据/WithVirtualNode.csv'
+path = './resource/WithVirtualNode.csv'
 
 df = pd.read_csv(path, encoding='gbk')
 vertex_attrs = {"Name": df['EN_NAME'].values,

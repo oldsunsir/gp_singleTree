@@ -12,7 +12,6 @@ import random
 import numpy
 import matplotlib.pyplot as plt
 import multiprocessing
-import time
 import traceback
 
 
@@ -32,7 +31,6 @@ def target(individual):
     Env = simulate()
     func = toolbox.compile(expr=individual)
     Env.gpfunc = func
-    Env.end = 1000
     return Env.run(),
 
 

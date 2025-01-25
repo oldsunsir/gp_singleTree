@@ -5,8 +5,6 @@ from GraphConstrut import MyGraph, vertex_attrs, edge_attrs
 import random
 from typing import Callable
 import pandas as pd
-import time
-import sys
 import ast
 import networkx as nx
 
@@ -57,7 +55,7 @@ class simulate:
         self.MyNet2 : nx.Graph = None
         self.RuleChoice = "GP"         ##选择哪一个rule，GP，Dijkstra, CASPER..
         self.discount = 0
-        self.end = 1000                 ##默认为500min仿真
+        self.end = 500                 ##默认为500min仿真
 
     def VDF(self, x:float)->float:
         return 1.6*x
